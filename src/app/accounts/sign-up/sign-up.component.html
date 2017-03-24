@@ -1,0 +1,53 @@
+ <app-alert></app-alert>
+ <form #formElements="ngForm" (ngSubmit)="onSubmit(formElements)">
+  	<div class="container">
+  		<div class="form-group">
+		    <label><b>Email</b></label>
+		    <input type="email" placeholder="Enter Email" name="email" ngModel email="true" #email="ngModel" >
+		    <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+	   			<div [hidden]="!email.errors.required">
+	     		 	Email is required
+	    		</div>
+	    		<div [hidden]="!email.errors">
+	     		 	Email is required {{email.errors}}
+	    		</div>
+			</div>
+		</div>
+		<div class="form-group">
+    		<label><b>Password</b></label>
+    		<input type="password" placeholder="Enter Password" required minlength="4" maxlength="24" name="psw" ngModel #psw="ngModel" >
+    		<div *ngIf="psw.errors && (psw.dirty || psw.touched)" class="alert alert-danger">
+	   			<div [hidden]="!psw.errors.required">
+	     		 	Password is required 
+	    		</div>
+	    		<div [hidden]="!psw.errors.minlength">
+	      			Password must be at least 4 characters long. {{psw.length}}
+	    		</div>
+	    		<div [hidden]="!psw.errors.maxlength">
+	      			Password cannot be more than 24 characters long.
+	    		</div>
+			</div>
+    	</div>
+    	<div class="form-group">
+    		<label><b>Repeat Password</b></label>
+    		<input type="password" placeholder="Repeat Password" name="pswRepeat" ngModel required #pswRepeat="ngModel" >
+    		<div *ngIf="pswRepeat.errors && (pswRepeat.dirty || pswRepeat.touched)" class="alert alert-danger">
+	   			<div [hidden]="!pswRepeat.errors.required">
+	     		 	Password is required 
+	    		</div>
+			</div>
+			<div *ngIf="(pswRepeat.dirty || pswRepeat.touched) && (psw.dirty ||  psw.touched) && (pswRepeat.value != psw.value)" class="alert alert-danger">
+	   			<div [hidden]="pswRepeat.value == psw.value">
+	     		 	Password donot match
+	    		</div>
+			</div>
+    	</div>
+	    <input type="checkbox" checked="checked"> Remember me
+	    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+	    <div class="clearfix">
+	      <button type="button"  class="cancelbtn">Cancel</button>
+	      <button type="submit" class="signupbtn" [disabled]="!formElements.valid">Sign Up</button>
+	    </div>
+  </div>
+</form>
