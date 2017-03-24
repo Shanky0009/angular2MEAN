@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     constructor(private http: Http) { }
 
-    login(emailID: string, password: string) {
-        return this.http.post('/api/login', JSON.stringify({ emailID: emailID, password: password }))
+    login(formValue) {
+        return this.http.post('/api/login', formValue)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();

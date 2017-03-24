@@ -130,7 +130,6 @@ userMethod.login=function(req,res)
 				res.status(400).json("Authentication failed. Wrong password.");
 		}
 	} else {
-		console.log(emailID)
 	    User.findOne({emailID:req.body.emailID}).exec(function(err,data) {
 			if (err) throw err;
 
