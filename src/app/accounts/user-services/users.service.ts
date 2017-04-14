@@ -21,9 +21,4 @@ export class UsersService {
 								})
 	}
 
-	// private handleError(error: any): Promise<any> {
-	// 	console.log('An error occured', error);
-	// 	return Promise.reject(error.message || error);
-	// }
-
 }
